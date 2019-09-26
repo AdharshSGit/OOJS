@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Call and Apply..Garage!
+        </title>
+    </head>
+    <body>
+        <script>
+            //Call Method
+            const vehicle1={
+                name: 'HONDA-Amaze',
+                date: '2/10/2019',
+                service: function(price){
+                    console.log(`The car ${this.name} service will be completed on ${this.date} with a service charge of ₹${price}`);
+                }
+                
+            };
+            vehicle1.service(5000);
+
+            const vehicle2={
+                name: 'HONDA-City',
+                date: '5/10/2019'
+            };
+
+            vehicle1.service.call(vehicle2,8000);
+
+            //Apply Method
+            const car1={
+                name: 'HONDA-Jazz',
+                date: '2/10/2019',
+                service: function(price){
+                    console.log(`The car ${this.name} service will be completed on ${this.date} with a service charge of ₹${price}`);
+                }
+            };
+            car1.service(6000);
+
+            const car2={
+                name: 'HONDA-Jazz',
+                date: '2/10/2019',
+                service:function(Yearofmfg,variant,price){
+                    console.log(`The car ${this.name} service will be completed on ${this.date} with a service charge of ₹${price}`);
+                    console.log(`The Variant is ${variant} and Year of manufacturing is ${Yearofmfg}.`);
+                }
+            
+            };
+            car2.service.apply(car1,[2019,'Petrol',6000]);
+
+        </script>
+    </body>
+</html>
