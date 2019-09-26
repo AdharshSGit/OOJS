@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Encapsulation..Garage!
+        </title>
+    </head>
+    <body>
+        <script>
+            const garage={
+                brand:'Roots',
+                part: 'Horn',
+                frequency: 10,
+                display: function(){
+                    console.log(`The ${this.part} has frequency of ${this.frequency}Hz which is of brand ${this.brand}`);
+                }
+            };
+            garage.display();
+            garage.brand='Valeo';
+            garage.part='Speaker';
+            garage.frequency='15';
+            garage.display();
+
+            const details=function(){
+                let brand='SKF';
+                let product='Bearing';
+                let type='Roller';
+                return function (){
+                    console.log(`The ${type} type ${product} is supplied by ${brand}`);
+                }
+            }
+            var disp= details();
+            disp();
+
+
+
+
+        </script>
+    </body>
+</html>
