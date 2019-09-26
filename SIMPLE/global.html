@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Global..Garage!
+        </title>
+    </head>
+    <body>
+        <script>
+            var supplier= 'BOSCH';
+            const vendor= 'Valeo';
+            console.log(window.supplier);// The window object can be invoked anywhere inside the program.
+            console.log(this.supplier);
+            console.log(window.vendor); // The window object cant be set to vendor because its been declared with keyword const rather than var
+            console.log(this.vendor);
+
+            const wheel={
+                type: 'tubeless',
+                ply: 'radial',
+                size: 30,
+                display: function(){
+                    console.log(`The wheel is ${this.type} and plies arrangement is ${this.ply} of radius ${this.size}cm and the supplier is ${window.supplier}`);
+                }
+            }
+            const brake={
+                type: 'disc',
+                material: 'Steel',
+                cost: 3000,
+                display: function(){
+                    console.log(`The brake used is ${this.type}type and made of ${this.material} with a price of ₹${this.cost} and the supplier is ${window.supplier}`);
+                }
+            }
+            wheel.display();
+            brake.display();
+        </script>
+    </body>
+</html>
