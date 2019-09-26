@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Scope and Closure.. Garage!
+        </title>
+    </head>
+    <body>
+        <script>
+            const vehicle='Apache 1604V'; //Global Scope
+            function fueltype(year)
+            {
+                const Fueltype='Fuel Injection';
+                var year;
+            return function (){  //closure
+                var cost= 120000;
+                
+                return(`The vehicle ${vehicle} is equiped with fueltype of ${Fueltype} at the price of ₹${cost} in the year ${year}.`);
+            }     
+        }
+       
+        const result = fueltype(2019);
+        console.log(result());
+
+        function disp(){
+            console.log(vehicle);
+        }
+        disp();
+
+        </script>
+    </body>
+</html>
