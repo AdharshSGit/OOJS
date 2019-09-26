@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Class..Garage!
+        </title>
+    </head>
+    <body>
+        <h1>CLASS</h1>
+        <h2>ENGINE OIL</h2>
+        <input type="button" id="lube1" value="MAX" onclick=" obj1.print()"></input>
+        <input type="button" id="lube1" value="CASTOR" onclick="obj2.print()"></input>
+        <div id="disp"></div>
+        </div>
+        <script>
+            function lubes(brand,type,price)
+            {
+                this.brand= brand;
+                this.type= type;
+                this.price =price;
+                this.print= function print(){
+                    document.getElementById('disp').innerHTML=`The EngineOil is of ${this.brand} brand which is of type ${this.type} and cost is ₹${this.price}`;
+
+                    console.log(`The EngineOil is of ${this.brand} brand which is of type ${this.type} and cost is ₹${this.price}`)
+                }
+                
+            }
+            var obj1= new lubes('MAX','Dot-3','900');
+            var obj2=new lubes('CASTOR', 'Dot-4','1200');
+            obj1.print();
+            console.log(obj1);
+            obj2.print();
+            console.log(obj2);
+            
+        </script>
+    </body>
+</html>
