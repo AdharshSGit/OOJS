@@ -39,13 +39,13 @@
                 name: 'HONDA-Jazz',
                 date: '2/10/2019',
                 service:function(Yearofmfg,variant,price){
-                    console.log(`The car ${this.name} service will be completed on ${this.date} with a service charge of ₹${price}`);
+                    console.log(`The car ${this.name} service will be completed on ${this.date} with a service charge of ₹${this.price}`);
                     console.log(`The Variant is ${variant} and Year of manufacturing is ${Yearofmfg}.`);
                 }
-            
+             
             };
+            
             car2.service.apply(car1,[2019,'Petrol',6000]);
-
         </script>
     </body>
 </html>
