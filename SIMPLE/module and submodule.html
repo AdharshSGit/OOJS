@@ -6,20 +6,19 @@
         </title>
     </head>
     <body>
+        <div id='offer'></div>
         <script>
-            const vehicle1 ={
-                 type: "mechanical",
-                 part: "clutch system",
-                 part_variety:"ARTz Slipper Cultch",
-                 price: 6500,
-                 offer: (function(){
-                     var disc= 8;
-                     return(this.price*(disc/100));
+            const offer=(function(brand,part,MRP)//module
+    {
+    var discount= 10;
+    
+    var finalamount=(function(){        //submodule
+    return (MRP*((100-discount)/100));
+    })();
 
-                
-                 })
-                     
-            }();
+    document.getElementById('offer').innerHTML=`Orginial price is ${MRP}`+ '<br>'+
+            `The Final discounted price of ${part}(${brand}) is Rs:${finalamount}`;
+    })('BOSCH','Air-Filter',1200);
             
         </script>
     </body>
