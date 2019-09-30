@@ -1,6 +1,6 @@
 
 (function title(){
-    document.getElementById('tit').innerHTML='Welcome to our GARAGE'
+    document.getElementById('titl').innerHTML='Welcome to our GARAGE'
 })(); //IIFE
 
 function Garage(service,purchase)
@@ -28,17 +28,14 @@ function Garage(service,purchase)
     }
   
 }
-var vehicleservice = new Garage("Yes","No");
-console.log(vehicleservice);
-vehicleservice.display();
-//let vehiclepurchase = new Garage('No','Yes');
 
-function mechanical(part,cost,brand)
+
+function Mechanical(part,cost,brand)
 {   
     this.part = part;
     this.cost = cost;
     this.brand = brand;
-    this.print = function(){
+    this.display = function(){
         document.getElementById('q3').innerHTML=`OE part:  ${part}` + '<br>' +` Brand: ${brand}`
         + '<br>' + `Costs Rs:${cost}.`+ '<hr>';
     };   
@@ -48,24 +45,23 @@ function mechanical(part,cost,brand)
     };
 }
 
-
-function electrical(part,cost,brand,freq)
+function Electrical(part,cost,brand,freq)
 {   
     this.part = part;
     this.cost = cost;
     this.brand = brand;
     this.freq = freq;
-    this.print = function(){
+    this.display = function(){
         document.getElementById('q4').innerHTML=`OE part : ${part} `+'<br>'+` Brand: ${brand}`+'<br>'+
                 `Frequency: ${freq}Hz `+'<br>'+` Cost: Rs${cost}.`+ '<hr>';
     }   
 }
-function lubes(part,cost,brand)
+function Lubes(part,cost,brand)
 {
     this.part = part;
     this.cost = cost;
     this.brand = brand;
-    this.print = function(){
+    this.display = function(){
         document.getElementById('q5').innerHTML=`OE part:  ${part}` + '<br>' +` Brand: ${brand}`
         + '<br>' + `Costs Rs:${cost}.`+ '<hr>';
     }  
@@ -74,40 +70,52 @@ function lubes(part,cost,brand)
         `Quantity: ${qty}`;
     };
 }
-function other(part,cost,brand)
+function Other(part,cost,brand)
 {
     this.part = part;
     this.cost = cost;
     this.brand = brand;
-    this.print = function(){
-        document.getElementById('q6').innerHTML=`OE part:  ${part}` + '<br>' +` Brand: ${brand}`
+    this.display = function(){
+        document.getElementById('q6').innerHTML=`OE part:  ${this.part}` + '<br>' +` Brand: ${brand}`
         + '<br>' + `Costs Rs:${cost}.`+ '<hr>';
     }  
 }
-mechanical.prototype= new Garage(); //prototype inheritance
-electrical.prototype= new Garage();
-lubes.prototype= new Garage();
-other.prototype= new Garage();
 
-var mechpart1 = new mechanical('Spark Plug',850,'SKF');
-mechpart1.print();
+Mechanical.prototype= new Garage(); //prototype inheritance
+Electrical.prototype= new Garage();
+Lubes.prototype= new Garage();
+Other.prototype= new Garage();
+
+var vehicleservice = new Garage("Yes","No");
+console.log(vehicleservice);
+vehicleservice.display();               //Polymorphism
+//let vehiclepurchase = new Garage('No','Yes');
+//vehiclepurchase.display();
+
+var mechpart1 = new Mechanical('Spark Plug',850,'SKF');
+mechpart1.display();
 console.log(mechpart1);
 
-var electricalpart1 = new electrical('Horn',550,'Roots',10);
-electricalpart1.print();
+
+var electricalpart1 = new Electrical('Horn',550,'Roots',10);
+electricalpart1.display();
 console.log(electricalpart1);
 
-var lubes1 = new lubes('Engine Oil',1200,'Castrol');
-lubes1.print();
+var lubes1 = new Lubes('Engine Oil',1200,'Castrol');
+lubes1.display();
 
-var other1=new other('bumper',3000,'OEM')
-other1.print();
 
+var other1=new Other('bumper',3000,'OEM')
+other1.display();
+
+
+//Additional Details
 function car_call(){
     this.warranty= 2;
     this.name= 'HONDA-City';
     mechpart1.print1.call(this,2018);
 }
+
 var dispcall= new car_call();   //Call
 
 function car_apply(){
@@ -115,6 +123,7 @@ function car_apply(){
 }
 var dispapply = new car_apply();  //Apply
 
+//Discount
 const offer=(function(brand,part,MRP)//module
 {
     var discount= 10;
@@ -128,7 +137,6 @@ const offer=(function(brand,part,MRP)//module
 })('BOSCH','Air-Filter',1200);
 
 //New Product
-
 function brakedisc()        //Encapsulation
 {
     let brand = "Brakes-India";
@@ -136,31 +144,36 @@ function brakedisc()        //Encapsulation
     let price = 4000;
     return{
     dispdisc : function(){
-        document.getElementById('brake').innerHTML=`The brake Disc of size ${size}inches of brand ${brand} which cost Rs:${price}`;
+        document.getElementById('brake').innerHTML=`The brake Disc of size ${size}inches of brand 
+        ${brand} which cost Rs:${price}`;
     }};
 }
+
+//Alternate Brands
 var disc = new brakedisc();
 disc.dispdisc();
 
 function brand(name){      //composite
-    this.brand = brand;
+    this.brand = name;
     
 }
-brand.prototype.show=function(){
-    document.getElementById('show').innerHTML=`The available brands for Brakedisc are:`+ `${brand}`;
-}
-function addbrand(name1){
-    this.brand = brand;
-    this.brake_disc = [];
-}
-addbrand.prototype.show1 = function(name1){
-    this.brake_disc.push();
-}
-addbrand.prototype.show2 = function(index){
-    return brake_disc[index].name1;
+brand.prototype.show=function(){        //Prototype
+    document.getElementById('show').innerHTML=`The available brands for Brakedisc are:`+ `${this.brand}`;
 }
 
-addbrand1= new addbrand('Suppliers');
+function addbrand(name1){
+    this.brand = name1;
+    this.brake_disc = [];
+}
+addbrand.prototype.show1 = function(brand){
+    this.brake_disc.push(brand);
+}
+addbrand.prototype.show2 = function(index){
+    document.getElementById('avail').innerHTML=`Available Brands:` + '<br>';
+    document.getElementById('brand').innerHTML+= (this.brake_disc[index].brand)+ '<br>';
+
+}
+addbrand1= new addbrand('Suppliers list');
 
 supplier1 = new brand('Valeo');
 supplier2 = new brand('BOSCH');
@@ -171,3 +184,17 @@ addbrand1.show1(supplier2);
 supplier1.show();
 addbrand1.show2(0);
 addbrand1.show2(1);
+
+//Benefits
+let additional = (function(){   //Design Pattern
+    let offer = 'Water-wash';
+    let totalprice = '1500';
+    function benefits(){
+        document.getElementById('benefits').innerHTML= `As the Service charge is above Rs:${totalprice} an additional 
+        offer of ${offer} is provided.`
+    }
+    return{
+        offer : benefits
+    };
+})();
+additional.offer();
