@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <title>
+        Simple & Composite..!
+    </title>
+    <body>
+        <div id='brake'></div>
+        <div id='avail'></div>
+        <div id='brand'></div>
+        <script>
+            function brakedisc()        //Simple
+{
+    let brand = "Brakes-India";
+    let size = 8;
+    let price = 4000;
+    return{
+    dispdisc : function(){
+        document.getElementById('brake').innerHTML=`The brake Disc of size ${size}inches of brand 
+        ${brand} which cost Rs:${price}`;
+    }};
+}
+
+//Alternate Brands
+var disc = new brakedisc();
+disc.dispdisc();
+
+function brand(name){      //composite
+    this.brand = name;
+    
+}
+brand.prototype.show=function(){        
+    document.getElementById('show').innerHTML=`The available brands for Brakedisc are:`+ `${this.brand}`;
+}
+
+function addbrand(name1){
+    this.brand = name1;
+    this.brake_disc = [];
+}
+addbrand.prototype.show1 = function(brand){
+    this.brake_disc.push(brand);
+}
+addbrand.prototype.show2 = function(index){
+    document.getElementById('avail').innerHTML=`Available Brands:` + '<br>';
+    document.getElementById('brand').innerHTML+= (this.brake_disc[index].brand)+ '<br>';
+
+}
+addbrand1= new addbrand('Suppliers list');
+
+supplier1 = new brand('Valeo');
+supplier2 = new brand('BOSCH');
+
+addbrand1.show1(supplier1);
+addbrand1.show1(supplier2);
+
+
+addbrand1.show2(0);
+addbrand1.show2(1);
+    </script>
+    </body>
+</html>
