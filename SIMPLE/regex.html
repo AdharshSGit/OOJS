@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Regex..Garage!
+        </title>
+    </head>
+    <body>
+        <script>
+            function phonenumber(inputtxt) {
+            var phoneno = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+            if(phoneno.test(inputtxt)==true) {
+            
+            alert("....");
+            console.log(inputtxt);
+            console.log(phoneno.test(inputtxt));
+           // return true;
+            }
+            else {
+            alert("message");
+            return false;
+            }
+            }
+            //phonenumber('asasa782');//false
+            phonenumber('9952817421');
+        </script>
+    </body>
+</html>
