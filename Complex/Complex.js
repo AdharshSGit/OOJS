@@ -1,4 +1,8 @@
 
+(function title(){
+    document.getElementById('tit').innerHTML='Welcome to our GARAGE'
+})(); //IIFE
+
 function Garage(service,purchase)
 {
     
@@ -80,7 +84,7 @@ function other(part,cost,brand)
         + '<br>' + `Costs Rs:${cost}.`+ '<hr>';
     }  
 }
-mechanical.prototype= new Garage();
+mechanical.prototype= new Garage(); //prototype inheritance
 electrical.prototype= new Garage();
 lubes.prototype= new Garage();
 other.prototype= new Garage();
@@ -104,9 +108,66 @@ function car_call(){
     this.name= 'HONDA-City';
     mechpart1.print1.call(this,2018);
 }
-var dispcall= new car_call();
+var dispcall= new car_call();   //Call
 
 function car_apply(){
     lubes1.print1.apply(this,[1.5,'Dot-4','HONDA-Amaze - 2017']);
 }
-var dispapply = new car_apply();
+var dispapply = new car_apply();  //Apply
+
+const offer=(function(brand,part,MRP)//module
+{
+    var discount= 10;
+    
+    var finalamount=(function(){        //submodule
+    return (MRP*((100-discount)/100));
+    })();
+
+    document.getElementById('offer').innerHTML=`Orginial price is ${MRP}`+ '<br>'+
+            `The Final discounted price of ${part}(${brand}) is Rs:${finalamount}`;
+})('BOSCH','Air-Filter',1200);
+
+//New Product
+
+function brakedisc()        //Encapsulation
+{
+    let brand = "Brakes-India";
+    let size = 8;
+    let price = 4000;
+    return{
+    dispdisc : function(){
+        document.getElementById('brake').innerHTML=`The brake Disc of size ${size}inches of brand ${brand} which cost Rs:${price}`;
+    }};
+}
+var disc = new brakedisc();
+disc.dispdisc();
+
+function brand(name){      //composite
+    this.brand = brand;
+    
+}
+brand.prototype.show=function(){
+    document.getElementById('show').innerHTML=`The available brands for Brakedisc are:`+ `${brand}`;
+}
+function addbrand(name1){
+    this.brand = brand;
+    this.brake_disc = [];
+}
+addbrand.prototype.show1 = function(name1){
+    this.brake_disc.push();
+}
+addbrand.prototype.show2 = function(index){
+    return brake_disc[index].name1;
+}
+
+addbrand1= new addbrand('Suppliers');
+
+supplier1 = new brand('Valeo');
+supplier2 = new brand('BOSCH');
+
+addbrand1.show1(supplier1);
+addbrand1.show1(supplier2);
+
+supplier1.show();
+addbrand1.show2(0);
+addbrand1.show2(1);
