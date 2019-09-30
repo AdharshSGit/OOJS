@@ -1,0 +1,16 @@
+{
+    "Mechanical":[
+        {
+            "part":"Spark-Plug",
+            "cost":"850",
+            "brand":"SKF"
+        },
+        {
+            "part":"Spark-Plug333",
+            "cost":"850",
+            "brand":"SKF"
+        }
+           ]
+   
+
+}
