@@ -67,7 +67,7 @@ function Lubes(part,cost,brand)
     }  
     this.print1= function(qty,type,name){
         document.getElementById('q8').innerHTML=`Vechicle Model: ${name}`+ '<br>' + `Lube type: ${part}-${type}`+ '<br>' +
-        `Quantity: ${qty}`;
+        `Quantity: ${qty} litre`;
     };
 }
 function Other(part,cost,brand)
@@ -181,7 +181,7 @@ supplier2 = new brand('BOSCH');
 addbrand1.show1(supplier1);
 addbrand1.show1(supplier2);
 
-supplier1.show();
+//supplier1.show();
 addbrand1.show2(0);
 addbrand1.show2(1);
 
