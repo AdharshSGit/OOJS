@@ -1,14 +1,19 @@
 {
-    "Mechanical":[
+    "mechpart1":[
         {
             "part":"Spark-Plug",
             "cost":"850",
             "brand":"SKF"
         },
+       {
+            "part":"Fuel-Injector",
+            "cost":"3500",
+            "brand":"BOSCH"
+        },
         {
-            "part":"Spark-Plug333",
-            "cost":"850",
-            "brand":"SKF"
+            "part": "Clutch-Disc",
+            "cost": "2500",
+            "brand": "Pricol"
         }
            ]
    
