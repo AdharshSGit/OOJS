@@ -75,5 +75,65 @@
             "warranty":"1.5",
             "model":"2017"  
           }
+    ],
+    "dispapply":[
+        {
+            "qty": "1.5",
+            "model":"HONDA-Amaze - 2017",
+            "type": "Dot-4"
+        },
+        {
+            "qty": "1.0",
+            "model":"HONDA-Brio - 2016",
+            "type": "Dot-3"
+        }
+    ],
+    "offer":[
+        {
+        "brand":"BOSCH",
+        "part":"Air-Filter",
+        "MRP":"1200",
+        "discount":"10"
+    },
+    {
+        "brand":"Valeo",
+        "part":"Oil-Filter",
+        "MRP":"1500",
+        "discount":"12"
+    }
+    ],
+    "brand":[
+        {
+            "brand1":"BOSCH"
+        },
+        {
+            "brand1":"Valeo"
+        }
+    ],
+    "additional":[
+        {
+            "offer":"Water-Wash",
+            "totalprice":"1500"
+        },
+        {
+            "offer":"Cashback-₹500",
+            "totalprice":"3000"
+        }
+    ],
+    "title":[
+    {
+        "heading":"Welcome to our GARAGE"
+    }
+    ],
+    "display":[
+        {
+            "time" : "10.00AM - 6.00PM",
+            "holiday" : "SATURDAY,SUNDAY"
+        },
+        {
+            "time" : "9.00AM - 7.00PM",
+            "holiday" : "SUNDAY"
+        }
     ]
+    
 }
