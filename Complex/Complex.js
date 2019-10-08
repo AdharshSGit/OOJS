@@ -1,8 +1,4 @@
 
-(function title(){
-    document.getElementById('titl').innerHTML='Welcome to our GARAGE'
-})(); //IIFE
-
 var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
@@ -17,11 +13,22 @@ var xhttp = new XMLHttpRequest();
         localStorage.setItem("lub",JSON.stringify(x.lubes1));
         localStorage.setItem("oth",JSON.stringify(x.other1));
         localStorage.setItem("call",JSON.stringify(x.dispcall));
+        localStorage.setItem("apply",JSON.stringify(x.dispapply));
+        localStorage.setItem("discount",JSON.stringify(x.offer));
+        localStorage.setItem("brand",JSON.stringify(x.brand));
+        localStorage.setItem("additional",JSON.stringify(x.additional));
+        localStorage.setItem("title",JSON.stringify(x.title));
+        localStorage.setItem("display",JSON.stringify(x.display));
         }
 
       };   
       xhttp.open("GET",'http://192.168.153.61:81/',true);
       xhttp.send();
+
+      var title1 = JSON.parse(localStorage.getItem("title"));
+      (function title(){
+        document.getElementById('titl').innerHTML= title1[0].heading;
+    })(); //IIFE
 
 function Garage(service,purchase)
 {
@@ -30,8 +37,7 @@ function Garage(service,purchase)
     if(service==='Yes')
     {
         document.getElementById('q1').innerHTML='I need to service my vehicle';
-        this.time = '10.00AM - 6.00PM';
-        this.holiday = 'SATURDAY,SUNDAY';
+        
         this.services='Service'; 
         
     }
@@ -39,14 +45,13 @@ function Garage(service,purchase)
     else if(purchase==='Yes')
     {
         document.getElementById('q1').innerHTML='I need to purchase accessories for my vehicle';
-        this.time = '9.00AM - 7.00PM';
-        this.holiday = 'SUNDAY';
+        
         this.services='Purchase';
        
     }
-    this.display = function(){
+    this.display = function(time,holiday){
         
-        document.getElementById('q2').innerHTML=`Working Time- ${this.time}`+'<br>' + `Holiday-${this.holiday}`;
+        document.getElementById('q2').innerHTML=`Working Time- ${time}`+'<br>' + `Holiday-${holiday}` + '<br>' + '<br>';
     };
   
 }
@@ -55,16 +60,16 @@ function Garage(service,purchase)
 function Mechanical(part,cost,brand)
 {   
     
-    //this.part = part;
-    //this.cost = cost;
-    //this.brand = brand;
+    this.part = part;
+    this.cost = cost;
+    this.brand = brand;
     this.display = function(){
-        document.getElementById('q3').innerHTML=`Function: ${this.services}`+ '<br>' +
+        document.getElementById('q3').innerHTML=`Function: ${this.services}`+ '<br>' + `MECHANICAL:` + '<br>'+
         `OE part:  ${part}` + '<br>' +` Brand: ${brand}`+ '<br>' + `Costs Rs:${cost}.`+ '<hr>';
     };   
     this.print1 = function(model){
-        document.getElementById('q7').innerHTML= `Vehicle Model: ${call1[0].name}-${model}` + '<br>' + 
-        `Serviced Part: ${part}` + '<br>' + `Warranty period: ${call1[0].warranty} years`; 
+        document.getElementById('q7').innerHTML= '<br>' +'<hr>'+`ADDITIONAL INFO:`+ '<br>' + `Vehicle Model: ${call1[0].name}-${model}` + '<br>' + 
+        `Serviced Part: ${part}` + '<br>' + `Warranty period: ${call1[0].warranty} years` + '<br>' + '<br>'; 
     };
 }
 
@@ -75,7 +80,7 @@ function Electrical(part,cost,brand)
     this.brand = brand;
     
     this.display = function(){
-        document.getElementById('q4').innerHTML=`OE part : ${part} `+'<br>'+` Brand: ${brand}`+'<br>'+
+        document.getElementById('q4').innerHTML=`ELECTRICAL:`+ '<br>'+`OE part : ${part} `+'<br>'+` Brand: ${brand}`+'<br>'+
                 ` Cost: Rs${cost}.`+ '<hr>';
     }   
 }
@@ -85,12 +90,12 @@ function Lubes(part,cost,brand)
     this.cost = cost;
     this.brand = brand;
     this.display = function(){
-        document.getElementById('q5').innerHTML=`OE part:  ${part}` + '<br>' +` Brand: ${brand}`
+        document.getElementById('q5').innerHTML=`LUBES:`+ '<br>'+`OE part:  ${part}` + '<br>' +` Brand: ${brand}`
         + '<br>' + `Costs Rs:${cost}.`+ '<hr>';
     }  
-    this.print1= function(qty,type,name){
-        document.getElementById('q8').innerHTML=`Vechicle Model: ${name}`+ '<br>' + `Lube type: ${part}-${type}`+ '<br>' +
-        `Quantity: ${qty} litre`;
+    this.print1= function(qty,type,model){
+        document.getElementById('q8').innerHTML=`Vechicle Model: ${model}`+ '<br>' + `Lube type: ${part}-${type}`+ '<br>' +
+        `Quantity: ${qty} litre`+ '<hr>';
     };
 }
 function Other(part,cost,brand)
@@ -99,7 +104,7 @@ function Other(part,cost,brand)
     this.cost = cost;
     this.brand = brand;
     this.display = function(){
-        document.getElementById('q6').innerHTML=`OE part:  ${this.part}` + '<br>' +` Brand: ${this.brand}`
+        document.getElementById('q6').innerHTML=`ACCESORIES:`+ '<br>'+`OE part:  ${this.part}` + '<br>' +` Brand: ${this.brand}`
         + '<br>' + `Costs Rs:${this.cost}.`+ '<hr>';
     }  
 }
@@ -114,7 +119,9 @@ Other.prototype= new Garage();
 var vehicleservice = new Garage(head1[0].service,head1[0].purchase);
 //var vehicleservice = new Garage("Yes","No");
 console.log(vehicleservice);
-vehicleservice.display();               //Polymorphism
+var display1 = JSON.parse(localStorage.getItem("display"));
+console.log(display1[0]);
+vehicleservice.display(display1[0].time,display1[0].holiday);               //Polymorphism
 //let vehiclepurchase = new Garage('No','Yes');
 //vehiclepurchase.display();
 
@@ -149,26 +156,27 @@ function car_call(){
     //this.name= name;
     mechpart1.print1.call(this,call1[0].model);
 }
-
 var dispcall= new car_call();   //Call
 
+var apply1 = JSON.parse(localStorage.getItem("apply"));
 function car_apply(){
-    lubes1.print1.apply(this,[1.5,'Dot-4','HONDA-Amaze - 2017']);
+    lubes1.print1.apply(this,[apply1[0].qty,apply1[0].type,apply1[0].model]);
 }
 var dispapply = new car_apply();  //Apply
 
 //Discount
+var offer1 = JSON.parse(localStorage.getItem("discount"));
 const offer=(function(brand,part,MRP)//module
 {
-    var discount= 10;
+    var discount= offer1[0].discount;
     
     var finalamount=(function(){        //submodule
     return (MRP*((100-discount)/100));
     })();
 
-    document.getElementById('offer').innerHTML=`Orginial price is ${MRP}`+ '<br>'+
-            `The Final discounted price of ${part}(${brand}) is Rs:${finalamount}`;
-})('BOSCH','Air-Filter',1200);
+    document.getElementById('offer').innerHTML=`DISCOUNT:` + '<br>' +`Orginial price is ${MRP}`+ '<br>'+
+            `The Final discounted price of ${part}(${brand}) is Rs:${finalamount}`+ '<br>'+ '<br>';
+})(offer1[0].brand,offer1[0].part,offer1[0].MRP);
 
 //New Product
 function brakedisc()        //Encapsulation
@@ -178,7 +186,7 @@ function brakedisc()        //Encapsulation
     let price = 4000;
     return{
     dispdisc : function(){
-        document.getElementById('brake').innerHTML=`The brake Disc of size ${size}inches of brand 
+        document.getElementById('brake').innerHTML=`Other Part:`+'<br>' +`The brake Disc of size ${size}inches of brand 
         ${brand} which cost Rs:${price}`;
     }};
 }
@@ -209,8 +217,9 @@ addbrand.prototype.show2 = function(index){
 }
 addbrand1= new addbrand('Suppliers list');
 
-supplier1 = new brand('Valeo');
-supplier2 = new brand('BOSCH');
+var brandnew= JSON.parse(localStorage.getItem("brand"));
+supplier1 = new brand(brandnew[0].brand1);
+supplier2 = new brand(brandnew[1].brand1);
 
 addbrand1.show1(supplier1);
 addbrand1.show1(supplier2);
@@ -220,12 +229,13 @@ addbrand1.show2(0);
 addbrand1.show2(1);
 
 //Benefits
+var additional1 = JSON.parse(localStorage.getItem("additional"));
 let additional = (function(){   //Design Pattern
-    let offer = 'Water-wash';
-    let totalprice = '1500';
+    let offer = additional1[0].offer;
+    let totalprice = additional1[0].totalprice;
     function benefits(){
-        document.getElementById('benefits').innerHTML= `As the Service charge is above Rs:${totalprice} an additional 
-        offer of ${offer} is provided.`
+        document.getElementById('benefits').innerHTML=  '<br>' + `ADDITIONAL BENEFITS:` +'<br>' + `As the Service charge is above Rs:${totalprice} an additional 
+        offer of ${offer} is provided.`+ '<br>' + '<br>';
     }
     return{
         offer : benefits
