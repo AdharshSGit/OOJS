@@ -1,6 +1,7 @@
 *{
     font-family: cursive;
     line-height: 1.7em;
+    
 }
 h2{
     text-align: center;
@@ -10,4 +11,12 @@ h2{
     text-align: center;
     font-size: 25px;
     
+}
+#bb{
+    margin-left: 30em;
+    text-align: justify;
+    margin-right: 30em;
+}
+P{
+    margin-left: 10em;
 }
