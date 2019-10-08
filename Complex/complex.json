@@ -15,7 +15,65 @@
             "cost": "2500",
             "brand": "Pricol"
         }
-           ]
-   
-
+           ],
+    "garage" :[
+        {
+            "service":"YES",
+            "purchase":"NO"
+        },
+        {
+            "service":"NO",
+            "purchase":"YES"
+        }
+    ],
+    "electricalpart1":[
+        {
+            "part":"Horn",
+            "cost":"550",
+            "brand":"ROOTS"
+            
+        },
+        {
+            "part":"Head-Light",
+            "cost":"3000",
+            "brand":"ROOTS"
+            
+        }
+    ],
+    "lubes1":[
+        {
+            "part":"Engine Oil",
+            "cost":"1200",
+            "brand":"Castrol"
+        },
+        {
+            "part":"Coolant Oil",
+            "cost":"1000",
+            "brand":"Shell"
+        }
+    ],
+    "other1":[
+        {
+            "part":"Bumper",
+            "cost":"4000",
+            "brand":"OEM-Honda"   
+        },
+        {
+            "part":"Trunk-Lid",
+            "cost":"5000",
+            "brand":"OEM-Toyota"
+        }
+    ],
+    "dispcall":[
+        {
+          "name":"HONDA-City",
+          "warranty":"2",
+          "model":"2018"  
+        },
+        {
+            "name":"HONDA-Civic",
+            "warranty":"1.5",
+            "model":"2017"  
+          }
+    ]
 }
