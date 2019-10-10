@@ -1,22 +1,37 @@
 *{
     font-family: cursive;
     line-height: 1.7em;
-    
+   color: rgb(253, 252, 252);
+   
+   
 }
+body{
+    background-image:url(bg2.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+ background-attachment: fixed;
+ width: 100%;
+}
+
 h2{
     text-align: center;
     font-size: 40px;
+    
 }
 #titl{
     text-align: center;
     font-size: 25px;
-    
+    font-weight: bold;
+}
+p{
+    font-weight: bold;
+    font-size: 20px; 
 }
 #bb{
-    margin-left: 30em;
+    margin-left: 10em;
     text-align: justify;
     margin-right: 30em;
 }
 P{
-    margin-left: 10em;
+    margin-left: 5em;
 }
